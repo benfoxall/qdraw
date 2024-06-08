@@ -13,12 +13,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#qr {
+  height: 28vmin;
+  width: 28vmin;
+  background-color: #5551;
+}
+#draw {
+  height: 70vmin;
+  width: 70vmin;
+  background-color: #5552;
+  transition: all 0.3s;
+  cursor: crosshair;
+}
+#draw:hover {
+  background-color: #5553;
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  gap: 1vmin;
 }
 
 h1 {
@@ -30,5 +51,17 @@ h1 {
   :root {
     color: #213547;
     background-color: #ffffff;
+  }
+}
+
+@media (orientation: landscape) {
+  body {
+    flex-direction: row;
+  }
+}
+
+@media (orientation: portrait) {
+  body {
+    flex-direction: column;
   }
 }

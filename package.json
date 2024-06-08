@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "paper": "^0.12.17",
+    "qrious": "^4.0.2"
   }
 }
