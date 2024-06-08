@@ -24,6 +24,7 @@
   background-color: #5552;
   transition: all 0.3s;
   cursor: crosshair;
+  touch-action: none;
 }
 #draw:hover {
   background-color: #5553;
