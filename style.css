@@ -47,3 +47,22 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+nav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+nav button {
+  background: none;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+nav button:hover {
+  background: #0002;
+}
