@@ -27,6 +27,11 @@ function save() {
   ).join('.')
 
   console.log("SAVE", s)
+  const params = new URLSearchParams();
+  params.set('v0', s)
+
+  history.replaceState(null, "", '?' + params);
+  // location.search = params
 }
 function restore(str) {
   for (const part of str.split('.')) {
