@@ -1,6 +1,11 @@
 import './style.css'
 import simplify from 'simplify-js';
 
+const light = matchMedia('(prefers-color-scheme: light)')
+const color = (lightColor, darkColor) => light.matches ? lightColor : darkColor;
+
+light.addEventListener('change', redraw)
+
 function doSimplify(path) {
   return simplify(path.map(([x, y]) => ({ x, y })), 10)
     .map(({ x, y }) => ([x, y]))
@@ -13,8 +18,6 @@ const ctx = canvas.getContext('2d')
 const paths = [];
 
 let current;
-
-// const base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
 
 // v1 - 255 / 255
 function save() {
@@ -83,7 +86,7 @@ function redraw() {
     ctx.beginPath()
     ctx.lineWidth = 8
     ctx.lineCap = ctx.lineJoin = 'round'
-    ctx.strokeStyle = '#5559'
+    ctx.strokeStyle = color('#333', '#fff');// '#5559'
     for (const [x, y] of path) {
       ctx.lineTo(x, y)
     }
