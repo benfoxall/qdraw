@@ -6,28 +6,63 @@ const ctx = canvas.getContext('2d')
 // state
 const paths = [];
 
+let current;
+
+canvas.addEventListener('pointerdown', e => {
+  console.log("down")
+  current = []
+  canvas.setPointerCapture(e.pointerId)
+})
+
+canvas.addEventListener('pointerup', e => {
+  console.log("up")
+  paths.push(current);
+  current = null;
+  canvas.releasePointerCapture(e.pointerId)
+  redraw()
+})
+
 
 canvas.addEventListener('pointermove', e => {
   let [x, y] = normalise(e, canvas)
 
-  ctx.fillStyle = '#f08'
+  current?.push([x, y]);
 
-  if (e.pressure === 0) {
-    ctx.fillStyle = '#08f5'
-  }
-
-  ctx.fillRect(x - 5, y - 5, 10, 10);
-
-  const coalescedEvents = e.getCoalescedEvents();
-  for (let coalescedEvent of coalescedEvents) {
-    let [x, y] = normalise(coalescedEvent, canvas)
-
-    ctx.fillStyle = '#fc09'
-    ctx.fillRect(x - 2, y - 2, 4, 4);
-  }
+  redraw()
 })
 
+function redraw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+  window.deb = { paths, current }
+
+  for (const path of paths) {
+    ctx.beginPath()
+    ctx.lineWidth = 5
+    ctx.lineCap = ctx.lineJoin = 'round'
+    ctx.strokeStyle = '#5559'
+    for (const [x, y] of path) {
+      ctx.lineTo(x, y)
+    }
+    ctx.stroke()
+  }
+
+  if (current) {
+    ctx.beginPath()
+    ctx.lineWidth = 2
+    ctx.lineCap = ctx.lineJoin = 'round'
+    ctx.strokeStyle = '#f08'
+    for (const [x, y] of current) {
+      ctx.lineTo(x, y)
+    }
+    ctx.stroke()
+  }
+}
+
+
+
+
+// 
 function normalise(event, canvas) {
   let rect = canvas.getBoundingClientRect();
 
