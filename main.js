@@ -101,6 +101,8 @@ canvas.addEventListener('pointermove', e => {
   redraw()
 })
 
+const ctxLine = line().context(ctx);
+
 function redraw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -112,13 +114,10 @@ function redraw() {
     ctx.strokeStyle = '#0009'
     ctx.lineWidth = 16
     ctx.lineCap = ctx.lineJoin = 'round'
-    line().context(ctx)
+    ctxLine
       .curve(curveBasis)
       (path);
     ctx.stroke()
-
-    window.pp = path
-    window.ll = line().context(ctx)
 
   }
 
@@ -127,7 +126,7 @@ function redraw() {
     ctx.lineWidth = 20
     ctx.lineCap = ctx.lineJoin = 'round'
     ctx.strokeStyle = '#08f'
-    line().context(ctx)
+    ctxLine
       .curve(curveBasis)
       (current);
 
