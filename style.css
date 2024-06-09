@@ -22,10 +22,11 @@
 #draw {
   height: 70vmin;
   width: 70vmin;
-  background-color: #5552;
+  background-color: #eee;
   transition: all 0.3s;
   cursor: crosshair;
   touch-action: none;
+  border-radius: 5px;
 }
 #draw:hover {
   background-color: #5553;

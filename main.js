@@ -1,9 +1,10 @@
 import './style.css'
 import simplify from 'simplify-js';
 import QRious from 'qrious'
+import { line, curveNatural, curveBasis } from 'd3';
 
 function doSimplify(path) {
-  return simplify(path.map(([x, y]) => ({ x, y })), 10)
+  return simplify(path.map(([x, y]) => ({ x, y })), 5)
     .map(({ x, y }) => ([x, y]))
 }
 
@@ -101,24 +102,30 @@ function redraw() {
   window.deb = { paths, current }
 
   for (const path of paths) {
+
     ctx.beginPath()
-    ctx.lineWidth = 8
+    ctx.strokeStyle = '#0009'
+    ctx.lineWidth = 16
     ctx.lineCap = ctx.lineJoin = 'round'
-    ctx.strokeStyle = '#333'
-    for (const [x, y] of path) {
-      ctx.lineTo(x, y)
-    }
+    line().context(ctx)
+      .curve(curveBasis)
+      (path);
     ctx.stroke()
+
+    window.pp = path
+    window.ll = line().context(ctx)
+
   }
 
   if (current) {
     ctx.beginPath()
-    ctx.lineWidth = 2
+    ctx.lineWidth = 20
     ctx.lineCap = ctx.lineJoin = 'round'
-    ctx.strokeStyle = '#fc0'
-    for (const [x, y] of current) {
-      ctx.lineTo(x, y)
-    }
+    ctx.strokeStyle = '#08f'
+    line().context(ctx)
+      .curve(curveBasis)
+      (current);
+
     ctx.stroke()
   }
 }
