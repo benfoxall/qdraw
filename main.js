@@ -1,5 +1,6 @@
 import './style.css'
 import simplify from 'simplify-js';
+import QRious from 'qrious'
 
 const light = matchMedia('(prefers-color-scheme: light)')
 const color = (lightColor, darkColor) => light.matches ? lightColor : darkColor;
@@ -11,6 +12,7 @@ function doSimplify(path) {
     .map(({ x, y }) => ([x, y]))
 }
 
+const qr = document.querySelector('#qr')
 const canvas = document.querySelector('#draw')
 const ctx = canvas.getContext('2d')
 
@@ -31,6 +33,12 @@ function save() {
   params.set('v0', s)
 
   history.replaceState(null, "", '?' + params);
+
+  new QRious({
+    element: qr,
+    value: document.location.href
+  });
+
   // location.search = params
 }
 function restore(str) {
