@@ -1,10 +1,10 @@
 import './style.css'
 import simplify from 'simplify-js';
 import QRious from 'qrious'
-import { line, curveNatural, curveBasis } from 'd3';
+import { line, curveBasis } from 'd3';
 
 function doSimplify(path) {
-  return simplify(path.map(([x, y]) => ({ x, y })), 5)
+  return simplify(path.map(([x, y]) => ({ x, y })), 10)
     .map(({ x, y }) => ([x, y]))
 }
 
@@ -42,7 +42,7 @@ function save() {
 
   new QRious({
     element: qr,
-    value: document.location.href
+    value: document.location.href,
   });
 
   // location.search = params
@@ -59,6 +59,11 @@ function restore(str) {
 
     paths.push(pairs)
   }
+
+  new QRious({
+    element: qr,
+    value: document.location.href,
+  });
 
   redraw()
 }

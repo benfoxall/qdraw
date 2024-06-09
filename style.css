@@ -14,50 +14,36 @@
 }
 
 #qr {
-  height: 28vmin;
-  width: 28vmin;
-  background-color: #5551;
+  height: 20vmin;
+  width: 20vmin;
+  position: fixed;
   image-rendering: pixelated;
+  background-color: #5551;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  border-radius: 5px;
+  border: 5px solid #fff;
 }
 #draw {
-  height: 70vmin;
-  width: 70vmin;
-  background-color: #eee;
-  transition: all 0.3s;
+  height: 90vmin;
+  width: 90vmin;
+  background-color: #fff;
+  transition: background-color 0.3s;
   cursor: crosshair;
   touch-action: none;
   border-radius: 5px;
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 #draw:hover {
   background-color: #5553;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  gap: 1vmin;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-@media (orientation: landscape) {
-  body {
-    flex-direction: row;
-  }
-}
-
-@media (orientation: portrait) {
-  body {
-    flex-direction: column;
-  }
 }
