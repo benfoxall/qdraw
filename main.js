@@ -2,11 +2,6 @@ import './style.css'
 import simplify from 'simplify-js';
 import QRious from 'qrious'
 
-const light = matchMedia('(prefers-color-scheme: light)')
-const color = (lightColor, darkColor) => light.matches ? lightColor : darkColor;
-
-light.addEventListener('change', redraw)
-
 function doSimplify(path) {
   return simplify(path.map(([x, y]) => ({ x, y })), 10)
     .map(({ x, y }) => ([x, y]))
@@ -109,7 +104,7 @@ function redraw() {
     ctx.beginPath()
     ctx.lineWidth = 8
     ctx.lineCap = ctx.lineJoin = 'round'
-    ctx.strokeStyle = color('#333', '#fff');// '#5559'
+    ctx.strokeStyle = '#333'
     for (const [x, y] of path) {
       ctx.lineTo(x, y)
     }
@@ -120,7 +115,7 @@ function redraw() {
     ctx.beginPath()
     ctx.lineWidth = 2
     ctx.lineCap = ctx.lineJoin = 'round'
-    ctx.strokeStyle = '#f08'
+    ctx.strokeStyle = '#fc0'
     for (const [x, y] of current) {
       ctx.lineTo(x, y)
     }

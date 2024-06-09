@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #213547;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,6 +17,7 @@
   height: 28vmin;
   width: 28vmin;
   background-color: #5551;
+  image-rendering: pixelated;
 }
 #draw {
   height: 70vmin;
@@ -46,13 +47,6 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
 }
 
 @media (orientation: landscape) {
