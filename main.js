@@ -23,12 +23,22 @@ let current;
 
 // v1 - 255 / 255
 function save() {
-  const s = paths.map(
-    path => btoa(path.flatMap(([x, y]) => [x / 4, y / 4])
-      .map(n => String.fromCharCode(n)).join(''))
-  ).join('.')
 
-  console.log("SAVE", s)
+  const parts = []
+  for (const path of paths) {
+    const coords = path
+      .flatMap(([x, y]) => [x, y])
+      .map(v => Math.floor(v / 4))
+      .map(v => Math.min(v, 255))
+      .map(v => Math.max(0, v))
+
+    const bstr = coords.map(b => String.fromCharCode(b)).join('')
+
+    const b64 = btoa(bstr);
+    parts.push(b64);
+  }
+
+  const s = parts.join('.')
   const params = new URLSearchParams();
   params.set('v0', s)
 
