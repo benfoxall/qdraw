@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "paper": "^0.12.17",
-    "qrious": "^4.0.2"
+    "qrious": "^4.0.2",
+    "simplify-js": "^1.2.4"
   }
 }
