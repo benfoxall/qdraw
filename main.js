@@ -11,6 +11,7 @@ function doSimplify(path) {
 const qr = document.querySelector('#qr')
 const canvas = document.querySelector('#draw')
 const ctx = canvas.getContext('2d')
+const ctxLine = line().context(ctx);
 
 // state
 const paths = [];
@@ -101,7 +102,6 @@ canvas.addEventListener('pointermove', e => {
   redraw()
 })
 
-const ctxLine = line().context(ctx);
 
 function redraw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
